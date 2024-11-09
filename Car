@@ -1,0 +1,18 @@
+local Tween = game:GetService("TweenService")
+local DP = script.Parent.DP
+local hinge = script.Parent.D.hinge1.CFrame
+local hinge1 = script.Parent.D.hinge1
+local hinge2 = script.Parent.D.hinge2
+local platepart = "PlatePart"
+local Opend = Tween:Create(hinge1, TweenInfo.new(1), {CFrame = hinge2.CFrame})
+local Closed = Tween:Create(hinge1, TweenInfo.new(1), {CFrame = hinge})
+DP.Touched:Connect(function(part)
+	if part:IsA("BasePart") and part.Name == platepart then
+		script.Parent.TP.SurfaceGui.Text.Text = part.Number.Value
+		Opend:Play()
+		wait(5)
+		script.Parent.TP.SurfaceGui.Text.Text = "어서오십시오"
+		script.Parent.TP.SurfaceGui.Text.TextColor3 = Color3.new(0.0156863, 1, 0)
+		Closed:Play()
+	end
+end)
